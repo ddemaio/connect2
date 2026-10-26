@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Apply to become an openSUSE Member. Tell membership officials about yourself, your contributions and the resources you are requesting.">
+<title>openSUSE Membership Application</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  color-scheme:dark light;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:env(safe-area-inset-left,0px);
+  padding-right:env(safe-area-inset-right,0px);
+  --bg:#101413;
+  --card:#171c1a;
+  --ink:#e8efea;
+  --muted:#9db0a4;
+  --line:#2b352d;
+  --green:#8fd13f;
+  --green-dark:#b9e39a;
+  --b1:#42cd42;
+  --b2:#20caa3;
+  --b3:#d4cb1b;
+  --b4:#ff5b45;
+  --b5:#a498ff;
+  --b6:#00c8ff;
+  --chip:#1c2620;
+  --pos:#42cd42;
+  --neg:#ff5b45;
+  --neu:#d4cb1b;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f6f7f6;
+    --card:#ffffff;
+    --ink:#182420;
+    --muted:#5c6b63;
+    --line:#dfe5e1;
+    --green:#73ba25;
+    --green-dark:#3a5a34;
+    --chip:#eef4ea;
+    --pos:#2e7d32;
+    --neg:#b3261e;
+    --neu:#8a6d00;
+    --shadow:0 1px 2px rgba(20,40,30,.06),0 8px 24px rgba(20,40,30,.06);
+  }
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:70px}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--green-dark)}
+
+/* ---- Universe toolbar (get-o-o masthead shape, hand-built; see README) ---- */
+.uni{
+  position:sticky;top:0;z-index:60;background:#173f4f;color:#fff;
+  border-style:solid;border-width:0 0 3px;
+  border-image:linear-gradient(90deg,var(--b1),var(--b2),var(--b3),var(--b4),var(--b5),var(--b6)) 1;
+}
+.uni-bar{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:12px;min-height:50px;padding:0 16px}
+.uni-brand{display:flex;align-items:center;gap:9px;color:#fff;text-decoration:none;font-weight:700;font-size:15px;white-space:nowrap}
+.uni-brand img{width:28px;height:28px;display:block;flex:none}
+.uni-links{display:flex;gap:2px;margin-left:6px}
+.uni-links a{color:#d7e6ea;text-decoration:none;font-size:13px;font-weight:600;padding:8px 10px;border-radius:6px;white-space:nowrap}
+.uni-links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.uni-spacer{flex:1}
+.uni-dots{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:8px;color:#fff;cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:7px 10px}
+.uni-dots:hover{background:rgba(255,255,255,.12)}
+.uni-dots svg{width:16px;height:16px;display:block}
+.uni-panel{display:none;background:#102a36;border-top:1px solid rgba(255,255,255,.12)}
+.uni-panel.open{display:block}
+.uni-panel-inner{max-width:1000px;margin:0 auto;padding:20px 16px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.uni-panel h3{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#8fd13f}
+.uni-panel ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.uni-panel a{color:#e8f1f3;text-decoration:none;font-size:13px}
+.uni-panel a:hover{color:#8fd13f;text-decoration:underline}
+@media (max-width:700px){
+  .uni-links{display:none}
+  .uni-panel-inner{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:380px){
+  .uni-panel-inner{grid-template-columns:1fr}
+  .uni-bar{padding:0 12px}
+}
+
+/* ---- Page ---- */
+.wrap{max-width:820px;margin:0 auto;padding:18px 14px 70px}
+.intro h1{font-size:20px;margin:0 0 2px;letter-spacing:-.01em}
+.lede{color:var(--muted);font-size:14px;margin:6px 0 14px;max-width:62ch}
+
+.card{background:var(--card);border:1px solid var(--line);border-top-width:3px;border-radius:0 0 10px 10px;padding:14px;margin-bottom:14px;box-shadow:var(--shadow)}
+.rule-1{border-top-color:var(--b1)}
+.rule-2{border-top-color:var(--b2)}
+.rule-3{border-top-color:var(--b3)}
+.rule-4{border-top-color:var(--b4)}
+.rule-5{border-top-color:var(--b5)}
+.rule-6{border-top-color:var(--b6)}
+.card > h2{font-size:12px;margin:0 0 3px;letter-spacing:.09em;text-transform:uppercase;color:var(--green-dark);font-variant-caps:all-small-caps}
+.card > .sub{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}}
+.full{grid-column:1/-1}
+
+label.f{display:block;margin-bottom:10px}
+label.f > span.lab{display:block;font-weight:600;font-size:13px;margin-bottom:2px}
+label.f > span.hint{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
+label.f > span.lab .req{color:var(--neg);font-weight:700}
+input[type=text],input[type=email],input[type=url],input[type=number],input[type=date],select,textarea{
+  width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:7px;
+  background:var(--bg);color:var(--ink);font:inherit;font-size:13.5px;
+}
+textarea{min-height:64px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--green);outline-offset:1px;border-color:var(--green)}
+
+.note{background:var(--chip);border-left:3px solid var(--b3);border-radius:0 8px 8px 0;padding:9px 11px;margin-top:4px}
+.note p{margin:0;font-size:12.5px;color:var(--muted)}
+.note p strong{color:var(--ink)}
+
+fieldset{border:0;padding:0;margin:0 0 10px}
+legend{font-weight:600;font-size:13px;margin-bottom:5px;padding:0}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opts.grid2{display:grid;grid-template-columns:1fr 1fr;gap:5px 16px}
+@media (max-width:560px){.opts.grid2{grid-template-columns:1fr}}
+.opt{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--ink)}
+.opt input{margin-top:3px;flex:none;accent-color:var(--green)}
+.opt small{display:block;color:var(--muted);font-size:11.5px}
+
+/* assessment panel */
+.assess{position:sticky;bottom:0;z-index:5}
+@media (max-width:640px){.assess{position:static}}
+.panel{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--b6);border-radius:0 0 12px 12px;padding:14px;box-shadow:var(--shadow)}
+.tier{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-weight:700;font-size:13px;padding:5px 11px;border-radius:999px;background:var(--chip);border:1px solid var(--line)}
+.badge.ok{color:var(--pos);border-color:var(--pos)}
+.badge.mid{color:var(--neu);border-color:var(--neu)}
+.badge.low{color:var(--neg);border-color:var(--neg)}
+.meter{height:8px;border-radius:999px;background:var(--chip);overflow:hidden;border:1px solid var(--line)}
+.meter i{display:block;height:100%;width:0;transition:width .3s ease;background:linear-gradient(90deg,var(--b1),var(--b2),var(--b6))}
+ul.signals{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+@media (max-width:640px){ul.signals{grid-template-columns:1fr}}
+ul.signals li{font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:flex-start}
+ul.signals li b{font-weight:700;flex:none;width:1em}
+li.pos b{color:var(--pos)} li.neg b{color:var(--neg)} li.neu b{color:var(--neu)}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+button{font:inherit;font-weight:600;font-size:14px;padding:9px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.primary{background:var(--green);border-color:var(--green);color:#10240c}
+button:hover{filter:brightness(.97)}
+.saved{font-size:12.5px;color:var(--muted);align-self:center}
+
+footer{color:var(--muted);font-size:12px;margin-top:22px;text-align:center}
+#out{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:var(--chip);border:1px solid var(--line);border-radius:8px;padding:12px;margin-top:14px;max-width:100%;overflow-x:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+
+<!-- Universe toolbar: hand-built stand-in for the shared Chameleon masthead (see README).
+     Button mark is the official artwork, loaded from favicon.svg in this repo. -->
+<nav class="uni" aria-label="openSUSE sites">
+  <div class="uni-bar">
+    <a class="uni-brand" href="https://www.opensuse.org/" aria-label="openSUSE home">
+      <img src="favicon.svg" alt="openSUSE button logo" width="28" height="28">
+      <span>openSUSE</span>
+    </a>
+    <div class="uni-links">
+      <a href="https://events.opensuse.org/">Events</a>
+      <a href="https://news.opensuse.org/">News</a>
+      <a href="https://en.opensuse.org/">Wiki</a>
+      <a href="https://forums.opensuse.org/">Forums</a>
+    </div>
+    <span class="uni-spacer"></span>
+    <button class="uni-dots" id="uni-btn" type="button" aria-expanded="false" aria-controls="uni-panel">
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="2.5" r="1.6"/><circle cx="8" cy="2.5" r="1.6"/><circle cx="13.5" cy="2.5" r="1.6"/><circle cx="2.5" cy="8" r="1.6"/><circle cx="8" cy="8" r="1.6"/><circle cx="13.5" cy="8" r="1.6"/><circle cx="2.5" cy="13.5" r="1.6"/><circle cx="8" cy="13.5" r="1.6"/><circle cx="13.5" cy="13.5" r="1.6"/></svg>
+      <span>openSUSE</span>
+    </button>
+  </div>
+  <div class="uni-panel" id="uni-panel">
+    <div class="uni-panel-inner">
+      <div><h3>Get openSUSE</h3><ul>
+        <li><a href="https://get.opensuse.org/tumbleweed/">Tumbleweed</a></li>
+        <li><a href="https://get.opensuse.org/leap/">Leap</a></li>
+        <li><a href="https://get.opensuse.org/microos/">MicroOS</a></li>
+        <li><a href="https://get.opensuse.org/">All distributions</a></li>
+      </ul></div>
+      <div><h3>Build</h3><ul>
+        <li><a href="https://build.opensuse.org/">Build Service</a></li>
+        <li><a href="https://openqa.opensuse.org/">openQA</a></li>
+        <li><a href="https://bugzilla.opensuse.org/">Bugzilla</a></li>
+        <li><a href="https://l10n.opensuse.org/">Weblate</a></li>
+      </ul></div>
+      <div><h3>Community</h3><ul>
+        <li><a href="https://forums.opensuse.org/">Forums</a></li>
+        <li><a href="https://events.opensuse.org/">Events</a></li>
+        <li><a href="https://news.opensuse.org/">News</a></li>
+        <li><a href="https://en.opensuse.org/openSUSE:Membership">Membership</a></li>
+        <li><a href="https://planet.opensuse.org/">Planet</a></li>
+      </ul></div>
+      <div><h3>Contribute</h3><ul>
+        <li><a href="https://github.com/opensuse">GitHub</a></li>
+        <li><a href="https://en.opensuse.org/">Wiki</a></li>
+        <li><a href="https://en.opensuse.org/openSUSE:Mailing_lists_subscription">Mailing lists</a></li>
+        <li><a href="https://en.opensuse.org/openSUSE:IRC_list">Chat</a></li>
+      </ul></div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="intro">
+  <h1>openSUSE Membership Application</h1>
+  <p class="lede">Apply to become an <strong>openSUSE Member</strong>. Membership recognises sustained contribution to the project and its community. Complete your <strong>openSUSE wiki profile</strong> first — membership officials will review it alongside this application.</p>
+  <p class="lede">Applications are sent to <a href="mailto:membership-officials@lists.opensuse.org">membership-officials@lists.opensuse.org</a>. Read the <a href="https://en.opensuse.org/openSUSE:Membership">membership guidelines</a> before you apply. Fields marked <span style="color:var(--neg)">*</span> are required before the application can be sent.</p>
+</header>
+
+<form id="form" novalidate>
+
+<!-- 1. APPLICANT -->
+<section class="card rule-1">
+  <h2>Applicant details</h2>
+  <p class="sub">How to reach you and what you would like your membership to include.</p>
+  <div class="grid">
+    <label class="f"><span class="lab">Name <span class="req">*</span></span><input type="text" name="name" autocomplete="name" required aria-required="true"></label>
+    <label class="f"><span class="lab">Target email address <span class="req">*</span></span><span class="hint">Where officials can reach you, and where your @opensuse.org mail would be forwarded.</span><input type="email" name="target" autocomplete="email" required aria-required="true"></label>
+    <label class="f"><span class="lab">Desired @opensuse.org email address</span><span class="hint">Enter the part before @opensuse.org. Leave blank if you do not want one.</span><input type="text" name="osemail" placeholder="username"></label>
+    <label class="f"><span class="lab">IRC handle</span><span class="hint">Your nick on Libera.Chat, if you use IRC.</span><input type="text" name="irc" placeholder="nick"></label>
+    <label class="f full"><span class="lab">Desired IRC cloak</span><span class="hint">For example, opensuse/member/username.</span><input type="text" name="cloak" placeholder="opensuse/member/username"></label>
+  </div>
+</section>
+
+<!-- 2. INTRODUCTION -->
+<section class="card rule-2">
+  <h2>Introduction</h2>
+  <p class="sub">Tell officials who you are and how you work with openSUSE.</p>
+  <label class="f"><span class="lab">Who are you? <span class="req">*</span></span><span class="hint">A short introduction: your background, what you use openSUSE for, and how you became involved.</span><textarea name="intro" style="min-height:120px" required aria-required="true"></textarea></label>
+</section>
+
+<!-- 3. CONTRIBUTIONS -->
+<section class="card rule-3">
+  <h2>Contributions</h2>
+  <p class="sub">Membership is based on sustained contribution. Tick the areas you work in and list your contributions with links.</p>
+  <fieldset>
+    <legend class="sr">Contribution areas</legend>
+    <div class="opts grid2">
+      <label class="opt"><input type="checkbox" name="contrib" value="Packaging / OBS"><span>Packaging / OBS</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Development / upstream"><span>Development / upstream</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Documentation"><span>Documentation</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Translation"><span>Translation</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="QA / bug triage"><span>QA / bug triage</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Infrastructure"><span>Infrastructure</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Design / artwork"><span>Design / artwork</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Advocacy / events"><span>Advocacy / events</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Forums / chat support"><span>Forums / chat support</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Wiki"><span>Wiki</span></label>
+      <label class="opt"><input type="checkbox" name="contrib" value="Other"><span>Other</span></label>
+    </div>
+  </fieldset>
+  <label class="f"><span class="lab">Contributions and URLs <span class="req">*</span></span><span class="hint">One contribution per line, with a link. OBS projects, GitHub pull requests, Bugzilla reports, wiki pages, forum posts, mailing-list threads, talks and events all count.</span><textarea name="contrib_details" style="min-height:140px" required aria-required="true" placeholder="Maintain the foo package — https://build.opensuse.org/package/show/...&#10;Translate the release notes — https://l10n.opensuse.org/...&#10;Answer questions in the forums — https://forums.opensuse.org/..."></textarea></label>
+</section>
+
+<!-- 4. WIKI PROFILE -->
+<section class="card rule-4">
+  <h2>Wiki profile</h2>
+  <p class="sub">Membership officials review your wiki profile alongside this application.</p>
+  <label class="f"><span class="lab">openSUSE wiki profile URL <span class="req">*</span></span><span class="hint">Link to your wiki user page, e.g. https://en.opensuse.org/User:YourName.</span><input type="url" name="wiki" placeholder="https://en.opensuse.org/User:" required aria-required="true"></label>
+  <div class="note">
+    <p><strong>Before you apply:</strong> create or update your profile on the <a href="https://en.opensuse.org/">openSUSE wiki</a> with your contributions and links, so officials can look at it if they have follow-up questions.</p>
+  </div>
+</section>
+
+<!-- ASSESSMENT -->
+<section class="assess" aria-live="polite">
+  <div class="panel">
+    <div class="tier">
+      <span class="badge" id="badge">Complete the checklist</span>
+      <span style="font-size:12.5px;color:var(--muted)">Applications are reviewed by membership officials.</span>
+    </div>
+    <div class="meter"><i id="bar"></i></div>
+    <ul class="signals" id="signals"></ul>
+    <div class="actions">
+      <button type="button" class="primary" id="send">Send application</button>
+      <button type="button" id="summary">Preview summary</button>
+      <button type="button" id="copy">Copy summary</button>
+      <button type="button" id="mailto">Open in email app</button>
+      <button type="button" id="reset">Clear form</button>
+      <span class="saved" id="saved"></span>
+    </div>
+    <div id="out" hidden></div>
+  </div>
+</section>
+
+</form>
+
+<footer>Questions? Email membership-officials@lists.opensuse.org. Nothing is sent until you press Send or open the application in your email app — your draft stays in this browser.</footer>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — add yourself to CC by pull request to receive applications.
+   ============================================================ */
+var CONFIG = {
+  PRIMARY: "membership-officials@lists.opensuse.org",
+  CC: [
+    // "membership-official@opensuse.org"
+  ],
+  SUBJECT_PREFIX: "openSUSE membership application"
+};
+/* ============================================================ */
+
+(function(){
+  var form = document.getElementById('form');
+  var badge = document.getElementById('badge'), bar = document.getElementById('bar'), sig = document.getElementById('signals');
+  var out = document.getElementById('out'), saved = document.getElementById('saved');
+  var KEY = 'osuse-membership-application-v1';
+
+  // Universe panel toggle (page chrome only)
+  var ubtn = document.getElementById('uni-btn'), upanel = document.getElementById('uni-panel');
+  if(ubtn && upanel){ ubtn.addEventListener('click', function(){
+    var open = upanel.classList.toggle('open');
+    ubtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });}
+
+  function val(n){
+    var e = form.elements[n]; if(!e) return '';
+    if(e.length && e[0] && e[0].type === 'radio'){
+      for(var i = 0; i < e.length; i++) if(e[i].checked) return e[i].value;
+      return '';
+    }
+    return e.value || '';
+  }
+  function checks(n){
+    return Array.prototype.slice.call(form.querySelectorAll('input[name="' + n + '"]:checked'))
+      .map(function(c){ return c.value; });
+  }
+  function filled(n){ return val(n).trim() !== ''; }
+  function contributionsFilled(){
+    return val('contrib_details').trim() !== '';
+  }
+  function desiredEmail(){
+    var v = val('osemail').trim();
+    if(!v) return '';
+    return v.indexOf('@') > -1 ? v : v + '@opensuse.org';
+  }
+
+  function requiredItems(){
+    return [
+      {ok: filled('name'), label: 'Your name'},
+      {ok: filled('target'), label: 'Target email address'},
+      {ok: filled('intro'), label: 'Introduction'},
+      {ok: contributionsFilled(), label: 'Contributions and links'},
+      {ok: filled('wiki'), label: 'Wiki profile URL'}
+    ];
+  }
+  function optionalItems(){
+    return [
+      {ok: filled('osemail'), label: 'Desired @opensuse.org address'},
+      {ok: filled('irc'), label: 'IRC handle'},
+      {ok: filled('cloak'), label: 'Desired IRC cloak'}
+    ];
+  }
+
+  function assess(){
+    var req = requiredItems(), opt = optionalItems();
+    var done = req.filter(function(i){ return i.ok; }).length;
+    var pct = Math.round((done / req.length) * 100);
+    bar.style.width = pct + '%';
+
+    var cls, label;
+    if(done === req.length){ cls = 'ok'; label = 'Ready to send'; }
+    else if(done >= 3){ cls = 'mid'; label = 'Almost ready'; }
+    else { cls = 'mid'; label = 'Complete the checklist'; }
+
+    badge.className = 'badge ' + cls;
+    badge.textContent = label + '  ·  ' + done + '/' + req.length + ' required details';
+
+    sig.innerHTML = '';
+    req.concat(opt).forEach(function(i){
+      var isRequired = req.indexOf(i) > -1;
+      var li = document.createElement('li');
+      li.className = i.ok ? 'pos' : (isRequired ? 'neg' : 'neu');
+      li.innerHTML = '<b>' + (i.ok ? '✓' : isRequired ? '!' : '~') + '</b><span></span>';
+      li.lastChild.textContent = i.label + (i.ok ? '' : (isRequired ? ' — required' : ' — optional'));
+      sig.appendChild(li);
+    });
+
+    return {
+      done: done,
+      total: req.length,
+      missing: req.filter(function(i){ return !i.ok; }).map(function(i){ return i.label; })
+    };
+  }
+
+  function buildSummary(){
+    var L = [];
+    L.push('openSUSE membership application');
+    L.push('');
+    L.push('NAME: ' + (val('name') || '—'));
+    L.push('TARGET EMAIL: ' + (val('target') || '—'));
+    L.push('WIKI PROFILE: ' + (val('wiki') || '—'));
+    L.push('DESIRED @OPENSUSE.ORG EMAIL: ' + (desiredEmail() || '—'));
+    L.push('IRC HANDLE: ' + (val('irc') || '—'));
+    L.push('DESIRED IRC CLOAK: ' + (val('cloak') || '—'));
+    L.push('');
+    L.push('INTRODUCTION');
+    L.push(val('intro') || '—');
+    L.push('');
+    L.push('CONTRIBUTIONS');
+    L.push('Areas: ' + (checks('contrib').join('; ') || '—'));
+    L.push(val('contrib_details') || '—');
+    return L.join('\n');
+  }
+
+  function missingRequired(){
+    return requiredItems().filter(function(i){ return !i.ok; }).map(function(i){ return i.label; });
+  }
+  function showMissing(missing){
+    out.hidden = false;
+    out.textContent = 'Please complete the following before sending your application:\n\n• ' + missing.join('\n• ');
+    saved.textContent = 'Application not sent.';
+    out.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  }
+
+  function save(){
+    try{
+      var d = {};
+      Array.prototype.forEach.call(form.elements, function(e){
+        if(!e.name) return;
+        if(e.type === 'checkbox' || e.type === 'radio'){ if(e.checked){ (d[e.name] = d[e.name] || []).push(e.value); } }
+        else d[e.name] = e.value;
+      });
+      localStorage.setItem(KEY, JSON.stringify(d));
+      saved.textContent = 'Draft saved in this browser';
+    }catch(e){ saved.textContent = ''; }
+  }
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY); if(!raw) return;
+      var d = JSON.parse(raw);
+      Array.prototype.forEach.call(form.elements, function(e){
+        if(!e.name || !(e.name in d)) return;
+        if(e.type === 'checkbox' || e.type === 'radio') e.checked = d[e.name].indexOf(e.value) > -1;
+        else e.value = d[e.name];
+      });
+      saved.textContent = 'Draft restored';
+    }catch(e){}
+  }
+
+  var t;
+  form.addEventListener('input', function(){ assess(); clearTimeout(t); t = setTimeout(save, 400); });
+  form.addEventListener('change', function(){ assess(); clearTimeout(t); t = setTimeout(save, 400); });
+
+  document.getElementById('summary').addEventListener('click', function(){
+    out.hidden = false; out.textContent = buildSummary(); out.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    var txt = buildSummary(); out.hidden = false; out.textContent = txt;
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ saved.textContent = 'Summary copied'; }, function(){}); }
+  });
+  document.getElementById('mailto').addEventListener('click', function(){
+    var missing = missingRequired();
+    if(missing.length){ showMissing(missing); return; }
+    var subject = CONFIG.SUBJECT_PREFIX + ': ' + (val('name') || 'applicant');
+    var body = buildSummary();
+    window.location.href = 'mailto:' + CONFIG.PRIMARY + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    saved.textContent = 'Opening your email app…';
+  });
+  document.getElementById('send').addEventListener('click', function(){
+    var missing = missingRequired();
+    if(missing.length){ showMissing(missing); return; }
+
+    var btn = this;
+    var body = buildSummary();
+    out.hidden = false; out.textContent = body;
+    btn.disabled = true; saved.textContent = 'Sending…';
+
+    var payload = {
+      _subject: CONFIG.SUBJECT_PREFIX + ': ' + (val('name') || 'applicant'),
+      _template: 'box',
+      _captcha: 'false',
+      _replyto: val('target'),
+      name: val('name'),
+      email: val('target'),
+      message: body
+    };
+    if(CONFIG.CC && CONFIG.CC.length) payload._cc = CONFIG.CC.join(',');
+
+    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(CONFIG.PRIMARY), {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify(payload)
+    }).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){
+        saved.textContent = 'Sent. A copy of your application is shown below — keep it for your records.';
+        btn.textContent = 'Sent ✓';
+      })
+      .catch(function(){
+        btn.disabled = false;
+        saved.textContent = 'Could not send. Use "Open in email app" or copy the summary and email it to ' + CONFIG.PRIMARY + '.';
+      });
+  });
+
+  document.getElementById('reset').addEventListener('click', function(){
+    form.reset(); try{ localStorage.removeItem(KEY); }catch(e){}
+    out.hidden = true; saved.textContent = ''; assess();
+    var sendBtn = document.getElementById('send');
+    sendBtn.disabled = false; sendBtn.textContent = 'Send application';
+  });
+
+  load(); assess();
+})();
+</script>
+</body>
+</html>
