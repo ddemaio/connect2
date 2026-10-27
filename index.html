@@ -496,7 +496,7 @@ var CONFIG = {
     };
     if(CONFIG.CC && CONFIG.CC.length) payload._cc = CONFIG.CC.join(',');
 
-    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(CONFIG.PRIMARY), {
+    fetch('https://form.taxi/s/5ae2sbmh', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify(payload)
