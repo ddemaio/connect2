@@ -234,7 +234,7 @@ footer{color:var(--muted);font-size:12px;margin-top:22px;text-align:center}
   <div class="grid">
     <label class="f"><span class="lab">Name <span class="req">*</span></span><input type="text" name="name" autocomplete="name" required aria-required="true"></label>
     <label class="f"><span class="lab">Target email address <span class="req">*</span></span><span class="hint">Where officials can reach you, and where your @opensuse.org mail would be forwarded.</span><input type="email" name="target" autocomplete="email" required aria-required="true"></label>
-    <label class="f"><span class="lab">Desired @opensuse.org email address</span><span class="hint">Enter the part before @opensuse.org. Leave blank if you do not want one.</span><input type="text" name="osemail" placeholder="username"></label>
+    <label class="f"><span class="lab">Desired @opensuse.org email address</span><span class="hint">Enter a username. Leave blank if you do not want one.</span><input type="text" name="osemail" id="osemail" placeholder="username"><span class="hint" id="osemail-preview"></span></label>
     <label class="f"><span class="lab">IRC handle</span><span class="hint">Your nick on Libera.Chat, if you use IRC.</span><input type="text" name="irc" placeholder="nick"></label>
     <label class="f full"><span class="lab">Desired IRC cloak</span><span class="hint">For example, opensuse/member/username.</span><input type="text" name="cloak" placeholder="opensuse/member/username"></label>
   </div>
@@ -348,10 +348,30 @@ var CONFIG = {
   function contributionsFilled(){
     return val('contrib_details').trim() !== '';
   }
-  function desiredEmail(){
-    var v = val('osemail').trim();
+  function normalizeDesiredUsername(){
+    var v = val('osemail').trim().toLowerCase();
     if(!v) return '';
-    return v.indexOf('@') > -1 ? v : v + '@opensuse.org';
+    if(v.indexOf('@') > -1){
+      v = v.split('@')[0];
+    }
+    return v.replace(/[^a-z0-9._-]/g, '');
+  }
+  function desiredEmail(){
+    var u = normalizeDesiredUsername();
+    if(!u) return '';
+    if(!/^[a-z0-9._-]+$/.test(u)) return '';
+    return u + '@opensuse.org';
+  }
+  function desiredEmailValidation(){
+    var raw = val('osemail').trim();
+    if(raw === '') return {ok: true, msg: ''};
+    var v = raw.toLowerCase();
+    if(v.indexOf('@') > -1){
+      v = v.split('@')[0];
+    }
+    if(v === '') return {ok: false, msg: 'Please enter a username for your @opensuse.org email.'};
+    if(/[^a-z0-9._-]/.test(v)) return {ok: false, msg: 'Only letters, numbers, dots, hyphens and underscores are allowed.'};
+    return {ok: true, msg: '', username: v, email: v + '@opensuse.org'};
   }
 
   function requiredItems(){
@@ -371,7 +391,26 @@ var CONFIG = {
     ];
   }
 
+  function updateOsemailPreview(){
+    var prev = document.getElementById('osemail-preview');
+    if(!prev) return;
+    var dv = desiredEmailValidation();
+    if(val('osemail').trim() === ''){
+      prev.textContent = '';
+      prev.style.color = 'var(--muted)';
+      return;
+    }
+    if(!dv.ok){
+      prev.textContent = dv.msg;
+      prev.style.color = 'var(--neg)';
+      return;
+    }
+    prev.textContent = 'Your address will be: ' + dv.email;
+    prev.style.color = 'var(--muted)';
+  }
+
   function assess(){
+    updateOsemailPreview();
     var req = requiredItems(), opt = optionalItems();
     var done = req.filter(function(i){ return i.ok; }).length;
     var pct = Math.round((done / req.length) * 100);
@@ -479,6 +518,14 @@ var CONFIG = {
   document.getElementById('send').addEventListener('click', function(){
     var missing = missingRequired();
     if(missing.length){ showMissing(missing); return; }
+    var dv = desiredEmailValidation();
+    if(val('osemail').trim() !== '' && !dv.ok){
+      out.hidden = false;
+      out.textContent = dv.msg;
+      saved.textContent = 'Application not sent.';
+      out.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      return;
+    }
 
     var btn = this;
     var body = buildSummary();
